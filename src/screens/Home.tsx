@@ -18,9 +18,18 @@ export default function Home() {
   const [depositLoading, setDepositLoading] = useState(false);
 
   function handlePixKey(value: string) {
+    const userStorage = localStorage.getItem("users");
+    if (!userStorage || !auth.user) return;
+
+    const users: User[] = JSON.parse(userStorage);
+
+    const notUniquePixKey = users.filter((user) =>
+      user.pixKeys.includes(value)
+    );
+
     let userObject = auth.user;
 
-    if (!userObject || !value) {
+    if (!userObject || !value || notUniquePixKey) {
       return alert("Não foi possível cadastrar a chave PIX");
     }
 
