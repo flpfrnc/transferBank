@@ -151,6 +151,14 @@ export default function Home() {
             <span className="col-span-2 text-sm">
               {auth.user?.account.account}
             </span>
+            <span className="col-span-2 font-bold text-sm">
+              Suas chaves PIX:
+            </span>
+            {auth.user?.pixKeys.map((pixKey) => (
+              <span key={pixKey} className="col-span-2 font-bold text-sm">
+                {pixKey}
+              </span>
+            ))}
           </div>
           <div className="h-fit shadow-lg rounded-lg flex flex-col justify-center items-center bg-white p-8 gap-4 w-[300px]">
             <div className="flex gap-2 justify-center items-center">
